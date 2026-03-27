@@ -29,9 +29,18 @@ const client = new Client({
   },
 });
 
+client.on("loading_screen", (percent, message) => {
+  console.log(`WhatsApp loading: ${percent}% - ${message}`);
+});
+
 client.on("qr", (qr) => {
   console.log("Scan QR berikut di WhatsApp:");
   qrcode.generate(qr, { small: true });
+  console.log("QR raw:", qr);
+  console.log(
+    "QR image URL:",
+    `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qr)}`
+  );
 });
 
 client.on("ready", () => {
@@ -48,6 +57,10 @@ client.on("auth_failure", (message) => {
 
 client.on("disconnected", (reason) => {
   console.error("WhatsApp disconnected:", reason);
+});
+
+client.on("message_create", (message) => {
+  console.log(`Message observed from ${message.from}: ${message.body}`);
 });
 
 client.on("message", async (message) => {
@@ -80,4 +93,7 @@ client.on("message", async (message) => {
   }
 });
 
-client.initialize();
+console.log("Initializing WhatsApp client...");
+client.initialize().catch((error) => {
+  console.error("WhatsApp initialize error:", error);
+});
