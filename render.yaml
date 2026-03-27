@@ -3,6 +3,11 @@ services:
     name: money-tracker-wa-bot
     env: node
     plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: PUPPETEER_CACHE_DIR
+        value: /opt/render/.cache/puppeteer
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /health

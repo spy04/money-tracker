@@ -4,6 +4,7 @@
   "description": "WhatsApp money tracker that parses chat messages and appends transactions to Google Sheets.",
   "main": "src/index.js",
   "scripts": {
+    "postinstall": "npx puppeteer browsers install chrome",
     "start": "node src/index.js",
     "dev": "node --watch src/index.js"
   },

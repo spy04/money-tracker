@@ -86,6 +86,16 @@ npm run dev
 4. Isi semua environment variable yang sama seperti file `.env`.
 5. Deploy lalu buka log untuk scan QR.
 
+Kalau deploy gagal karena Chrome tidak ditemukan, project ini sekarang sudah menjalankan:
+
+```bash
+npx puppeteer browsers install chrome
+```
+
+saat `npm install`. Jadi biasanya cukup `Clear build cache & deploy` sekali dari Render supaya binary Chrome ikut terpasang.
+
+Render juga dikunci ke Node 20 lewat `render.yaml`, karena log error kamu tadi menunjukkan Node `v25.8.2` dan itu terlalu baru untuk banyak paket bot dan Puppeteer.
+
 ## Catatan Penting Render Free
 
 `whatsapp-web.js` butuh sesi login WhatsApp. Di Render free, filesystem tidak persisten antar redeploy atau restart besar, jadi ada kemungkinan kamu perlu scan QR lagi. Untuk MVP ini masih oke, tapi kalau mau stabil jangka panjang biasanya perlu penyimpanan session yang persisten di luar container.
