@@ -1,0 +1,22 @@
+{
+  "name": "money-tracker-wa-bot",
+  "version": "1.0.0",
+  "description": "WhatsApp money tracker that parses chat messages and appends transactions to Google Sheets.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "googleapis": "^144.0.0",
+    "puppeteer": "^24.7.1",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.27.0"
+  }
+}
